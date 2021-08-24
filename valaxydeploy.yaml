@@ -3,11 +3,11 @@
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
-  name: GOWebApp-deployment
+  name: go-web-app-deployment
 spec:
   selector:
     matchLabels:
-      app: GOWebApp-devops-project
+      app: go-web-app-devops-project
   replicas: 2 # tells deployment to run 2 pods matching the template
   strategy:
     type: RollingUpdate
@@ -18,10 +18,10 @@ spec:
   template:
     metadata:
       labels:
-        app: GOWebApp-devops-project
+        app: go-web-app-devops-project
     spec:
       containers:
-      - name: GOWebApp-devops-project
+      - name: go-web-app-devops-project
         image: marjook/simple-devops-image
         imagePullPolicy: Always
         ports:
@@ -30,12 +30,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: GOWebApp-service
+  name: go-web-app-service
   labels:
-    app: GOWebApp-devops-project
+    app: go-web-app-devops-project
 spec:
   selector:
-    app: GOWebApp-devops-project
+    app: go-web-app-devops-project
   type: LoadBalancer
   ports:
     - port: 8080
